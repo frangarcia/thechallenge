@@ -1,6 +1,8 @@
 plugins {
-  id 'application'
-  id 'com.github.johnrengelman.shadow' version '1.2.3'
+    id 'java'
+    id 'application'
+    id 'groovy'
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
 }
 
 repositories {
@@ -12,12 +14,14 @@ sourceCompatibility = '1.8'
 mainClassName = 'io.vertx.core.Launcher'
 
 def vertxVersion = '3.4.1'
-def mainVerticleName = 'io.vertx.starter.MainVerticle'
+def mainVerticleName = 'groovy:net.frangarcia.thechallenge.MainVerticle'
 def watchForChange = 'src/**/*'
 def doOnChange = './gradlew classes'
 
 dependencies {
   compile "io.vertx:vertx-core:$vertxVersion"
+  compile "io.vertx:vertx-web:$vertxVersion"
+  compile "io.vertx:vertx-lang-groovy:$vertxVersion"
   testCompile "junit:junit:4.12"
   testCompile "io.vertx:vertx-unit:$vertxVersion"
 }
