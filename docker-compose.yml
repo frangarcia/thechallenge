@@ -45,4 +45,4 @@ services:
       options:
         max-size: "100k"
         max-file: "10"
-    container_name: ngx_thechallenge
+    container_name: the_challenge
