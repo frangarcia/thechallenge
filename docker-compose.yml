@@ -1,0 +1,48 @@
+version: '2'
+services:
+  redis-the-challenge:
+    image: redis:3.0.7-alpine
+    ports:
+      - 6379:6379
+    logging:
+      options:
+        max-size: "100k"
+        max-file: "10"
+    environment:
+      - "TZ=GMT"
+    container_name: the_challenge_redis
+
+  mysql-the-challenge:
+    image: mysql:5.6.27
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/:/mysql:rw
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD="yes"
+      - "TZ=GMT"
+    command: "/mysql/run.sh"
+    logging:
+      options:
+        max-size: "100k"
+        max-file: "10"
+    container_name: the_challenge_mysql
+
+  thechallenge:
+    build: ./
+    depends_on:
+      - mysql-the-challenge
+      - redis-the-challenge
+    ports:
+      - 8080:8080
+      - 8181:8181
+    volumes:
+      - ./:/root/thechallenge
+    environment:
+      - "TZ=GMT"
+    hostname: "local"
+    logging:
+      options:
+        max-size: "100k"
+        max-file: "10"
+    container_name: ngx_thechallenge
