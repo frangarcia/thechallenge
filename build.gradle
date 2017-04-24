@@ -14,6 +14,9 @@ sourceCompatibility = '1.8'
 mainClassName = 'io.vertx.core.Launcher'
 
 def vertxVersion = '3.4.1'
+def hibernateVersion = '5.2.10.Final'
+def mysqlVersion = '5.1.41'
+def redisVersion = '2.9.0'
 def mainVerticleName = 'groovy:net.frangarcia.thechallenge.MainVerticle'
 def watchForChange = 'src/**/*'
 def doOnChange = './gradlew classes'
@@ -22,6 +25,11 @@ dependencies {
   compile "io.vertx:vertx-core:$vertxVersion"
   compile "io.vertx:vertx-web:$vertxVersion"
   compile "io.vertx:vertx-lang-groovy:$vertxVersion"
+  compile "org.hibernate:hibernate-core:$hibernateVersion"
+  compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+  compile "org.hibernate:hibernate-validator:$hibernateVersion"
+  compile "mysql:mysql-connector-java:$mysqlVersion"
+  compile "redis.clients:jedis:$redisVersion"
   testCompile "junit:junit:4.12"
   testCompile "io.vertx:vertx-unit:$vertxVersion"
 }
