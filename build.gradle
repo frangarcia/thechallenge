@@ -14,7 +14,7 @@ sourceCompatibility = '1.8'
 mainClassName = 'io.vertx.core.Launcher'
 
 def vertxVersion = '3.4.1'
-def hibernateVersion = '5.2.10.Final'
+def hibernateVersion = '5.2.4.Final'
 def mysqlVersion = '5.1.41'
 def redisVersion = '2.9.0'
 def mainVerticleName = 'groovy:net.frangarcia.thechallenge.MainVerticle'
