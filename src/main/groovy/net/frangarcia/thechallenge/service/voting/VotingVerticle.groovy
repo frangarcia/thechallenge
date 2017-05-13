@@ -27,34 +27,6 @@ class VotingVerticle extends AbstractVerticle {
   @Override
   void start() {
     println "Deploying voting verticle"
-    def router = Router.router(vertx)
-    def inboundPermitted = [
-      address:"net.frangarcia.thechallenge.vote"
-    ]
-
-    def outboundPermitted = [
-      address:"net.frangarcia.thechallenge.updatevote"
-    ]
-
-    def options = [
-      inboundPermitteds: [inboundPermitted],
-      outboundPermitteds: [outboundPermitted]
-    ]
-
-    def sockJSHandler = SockJSHandler.create(vertx)
-
-    sockJSHandler.bridge(options)
-    sockJSHandler.socketHandler({ sockJSSocket ->
-      println "Something received ${sockJSSocket}"
-      // Just echo the data back
-      //sockJSSocket.handler(sockJSSocket.&write)
-    })
-    router.route("/eventbus/*").handler(sockJSHandler)
-
-    HttpServer server = vertx.createHttpServer()
-    server.requestHandler(router.&accept)
-    server.listen(8181)
-
     vertx.eventBus().consumer("net.frangarcia.thechallenge.vote", handlerVoting)
   }
 

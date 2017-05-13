@@ -1,7 +1,7 @@
 = The Challenge
 
-This project is just a small example to show how to use vert.x 3.4.1
+This project is just a small example to show how to use vert.x 3.4.1 in a docker container
 
 ```
-./gradlew run
+docker-compose stop && docker-compose build && docker-compose up -d
 ```
