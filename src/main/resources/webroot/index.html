@@ -13,24 +13,18 @@
   <script src='js/vertx-eventbus.js'></script>
 
   <script>
-    $.getJSON("http://localhost:8080/api/current", function( data ) {
+    $.getJSON("/api/current", function( data ) {
       var items = [];
       console.log(data.options);
       $.each( data.options, function( i, option ) {
-      	console.log(option.label);
         $('#options').append('<span id="votes'+option.label+'">'+option.total+'</span>');
       });
-//
-//      $( "<ul/>", {
-//        "class": "my-new-list",
-//        html: items.join( "" )
-//      }).appendTo( "body" );
     });
   </script>
 
   <script>
 
-    var eb = new EventBus('http://localhost:8181/eventbus/');
+    var eb = new EventBus('/eventbus/');
 
     eb.onopen = function() {
       // set a handler to receive a message

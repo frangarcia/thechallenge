@@ -10,6 +10,7 @@ services:
         max-file: "10"
     environment:
       - "TZ=GMT"
+    hostname: "redis-the-challenge"
     container_name: the_challenge_redis
 
   mysql-the-challenge:
@@ -19,8 +20,10 @@ services:
     volumes:
       - ./mysql/:/mysql:rw
     environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD="yes"
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=thechallenge
       - "TZ=GMT"
+    hostname: "mysql-the-challenge"
     command: "/mysql/run.sh"
     logging:
       options:
@@ -28,7 +31,7 @@ services:
         max-file: "10"
     container_name: the_challenge_mysql
 
-  thechallenge:
+  the-challenge:
     build: ./
     depends_on:
       - mysql-the-challenge
@@ -40,7 +43,7 @@ services:
       - ./:/root/thechallenge
     environment:
       - "TZ=GMT"
-    hostname: "local"
+    hostname: "the-challenge"
     logging:
       options:
         max-size: "100k"
